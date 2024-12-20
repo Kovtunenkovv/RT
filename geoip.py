@@ -23,7 +23,8 @@ with geoip2.database.Reader(database_path) as reader:
             g_network = response.traits.network
             #print (f'{ip} {g_country} {g_city} {g_latitude} {g_longitude} {g_network}')
 
-            #ipwhois 
+            #ipwhois
+            # !!! "Allowed average daily response limit is set to 100 regarding one IP address."
             data = IPWhois(ip)
             data = data.lookup_whois()
             w_country = data['nets'][0]['country']
@@ -31,7 +32,6 @@ with geoip2.database.Reader(database_path) as reader:
             w_address = data['nets'][0]['address']
             w_asn = data['asn']
             #print (f'{ip} {w_country} {w_city} {w_address}')
-            
             
             result = f"{ip}|{g_country}|{g_city}|{g_latitude}|{g_longitude}|{g_network}|{w_city}|{w_address}|{w_asn}\n"
             out.write(result)

@@ -1,4 +1,4 @@
-/* Количество регистраций на  RUTUBE по годам */
+/* Количество регистраций на  RT по годам */
 SELECT is_active, COUNT(is_active) AS all,
     SUM(CASE WHEN created_ts like '2020%' THEN 1 ELSE 0 END) AS "2020",
     SUM(CASE WHEN created_ts like '2021%' THEN 1 ELSE 0 END) AS "2021",

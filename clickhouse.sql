@@ -132,7 +132,7 @@ SELECT
 FROM 
     player.events
 WHERE 
-    edge = 'salam-kem-88.rutube.ru' 
+    edge = 'slm-kem-88.rt.ru' 
     AND ts >= '1737752400' 
     AND ts < '1738011600'
 GROUP BY 
@@ -292,7 +292,7 @@ ORDER BY
 
 -- Трафик CDN
 select event_date,host, (sum(mb_sent)/1000) as traffic_Gb from cdn.traffic_day
-where event_date = '2025-01-28' and mb_sent >0 and host = 'salam-smr-41.rutube.ru'
+where event_date = '2025-01-28' and mb_sent >0 and host = 'slm-smr-41.rt.ru'
 group by event_date, host 
 limit 100
 
@@ -323,7 +323,7 @@ FROM
     player.events
 WHERE 
     event_date = today()  -- Фильтр по сегодняшней дате
-    AND edge = 'river-1.rutube.ru'
+    AND edge = 'rvr-1.rt.ru'
     AND toDate(toDateTime64(ts, 3)) = today()  -- Дополнительный фильтр по дате из ts
 GROUP BY 
     ttt,  -- Группируем по преобразованному времени
@@ -573,7 +573,7 @@ where
     --geoip_asn = '50923'
     and event_date >= '2025-03-17'
     and edge != ''
-    and (edge ilike 'salam%' or edge ilike 'river%')
+    and (edge ilike 'slm%' or edge ilike 'rvr%')
 group by edge--, event_date
 order by c desc
 limit 100000
@@ -605,7 +605,7 @@ WHERE
         WHERE 
             toDateTime64(ts, 0) >= '2025-03-18 03:40:00'
             AND toDateTime64(ts, 0) <= '2025-03-18 04:50:00'
-            AND (edge = 'river-3-327.rutube.ru' OR dive = 'river-3-327.rutube.ru')
+            AND (edge = 'rvr-3-327.rt.ru' OR dive = 'rvr-3-327.rt.ru')
             AND uid != ''
     )
 GROUP BY uid, pid
@@ -651,15 +651,15 @@ select
     geoip_asn,
     count() as event,
     uniq(view_id) as view, 
-    uniqIf(view_id, edge = 'salam-nsk-70.rutube.ru') as "salam-nsk-70",
-    uniqIf(view_id, edge = 'salam-nsk-42.rutube.ru') as "salam-nsk-42",
-    uniqIf(view_id, edge = 'salam-nsk-1042.rutube.ru') as "salam-nsk-1042",
-    uniqIf(view_id, edge = 'salam-nsk-23.rutube.ru') as "salam-nsk-23",
-    uniqIf(view_id, edge = 'salam-nsk-1023.rutube.ru') as "salam-nsk-1023"
+    uniqIf(view_id, edge = 'slm-nsk-70.rt.ru') as "slm-nsk-70",
+    uniqIf(view_id, edge = 'slm-nsk-42.rt.ru') as "slm-nsk-42",
+    uniqIf(view_id, edge = 'slm-nsk-1042.rt.ru') as "slm-nsk-1042",
+    uniqIf(view_id, edge = 'slm-nsk-23.rt.ru') as "slm-nsk-23",
+    uniqIf(view_id, edge = 'slm-nsk-1023.rt.ru') as "slm-nsk-1023"
 from player.events 
 where 
     event_date between '2025-03-06' - INTERVAL 13 DAY and '2025-03-06' + INTERVAL 13 DAY 
-    and (edge = 'salam-nsk-70.rutube.ru' or edge = 'salam-nsk-42.rutube.ru' or edge = 'salam-nsk-1042.rutube.ru' or edge = 'salam-nsk-23.rutube.ru' or edge = 'salam-nsk-1023.rutube.ru') 
+    and (edge = 'slm-nsk-70.rt.ru' or edge = 'slm-nsk-42.rt.ru' or edge = 'slm-nsk-1042.rt.ru' or edge = 'slm-nsk-23.rt.ru' or edge = 'slm-nsk-1023.rt.ru') 
     and qw >= 1 and qh >= 1 and v >= 1 
     and geoip_region = 'Moscow'
 group by 

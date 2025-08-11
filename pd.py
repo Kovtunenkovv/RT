@@ -18,7 +18,7 @@ for key in data:
 
 df = pd.DataFrame(data)
 
-df['Datetime'] = pd.to_datetime(df['Datetime'], format='%d.%m.%Y')
+df['Datetime'] = pd.to_datetime(df['Datetime'], format='%d.%m.%Y')  #format='%Y-%m-%d %H:%M:%S'
 
 plt.figure(figsize=(15, 8))
 
